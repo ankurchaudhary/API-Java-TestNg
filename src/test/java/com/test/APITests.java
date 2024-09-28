@@ -66,14 +66,28 @@ public class APITests {
         softAssert.assertAll();
     }
 
-    //@Test
+    @Test
     public void testPostCall() throws IOException {
+        Request request = new Request();
+        request.setName("morpheus");
+        request.setJob("leader");
 
+        Response response = RestAssured.given()
+                .header("Content-Type",
+                        "application/json")
+                .baseUri(ConfigReader.get("baseUrl"))
+                .body(request).post();
+        Assert.assertEquals(response.statusCode(), 201);
     }
 
-    //@Test
+    @Test
     public void testBadRequest400(){
-
+        Response response = RestAssured.given()
+                .header("Content-Type",
+                        "application/json")
+                .baseUri(ConfigReader.get("postUrl"))
+                .body("").post();
+        Assert.assertEquals(response.statusCode(), 400);
     }
 
     @Test
@@ -88,36 +102,17 @@ public class APITests {
         Assert.assertEquals(response.statusCode(), 404);
     }
 
-
-    public String request() throws IOException {
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        Request request = new Request();
-
-        /*
-        req.getData().setPrice(1849.99);
-        req.getData().setYear(2020);
-        req.getData().setHardDiskSize("1 TB");
-        req.getData().setCpuModel("Intel Core i9");
-        */
-        return   objectMapper.writeValueAsString(request);
-    }
-
     public Response getCall(){
-        Response response = RestAssured.given()
-                .baseUri(ConfigReader.get("baseUrl"))
+        return RestAssured
+                .given().baseUri(ConfigReader.get("baseUrl"))
                 .queryParam("page",1).get();
-
-        return response;
     }
 
     public Root expectedData() throws IOException {
-
         File file = new File("src/test" +
                 "/resources/json/testdata.json");
         ObjectMapper objectMapper = new ObjectMapper();
-        Root root = objectMapper.readValue(file, Root.class);
+        Root root = objectMapper.readValue(file,Root.class);
 
         return root;
     }
