@@ -6,7 +6,8 @@ import java.util.Properties;
 
 public class ConfigReader {
 
-    public static final String DEFAULT_PROPERTIES = "data.properties";
+    public static final String DEFAULT_PROPERTIES =
+            "src/test/resources/data.properties";
 
     public static Properties properties;
 

@@ -1,0 +1,5 @@
+services:
+  api:
+    image: docker/automation:latest
+    volumes:
+      - /Users/achaudhary/Desktop/Reports:/home/selenium-docker/test-output

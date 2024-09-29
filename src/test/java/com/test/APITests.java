@@ -87,6 +87,7 @@ public class APITests {
                         "application/json")
                 .baseUri(ConfigReader.get("postUrl"))
                 .body("").post();
+
         Assert.assertEquals(response.statusCode(), 400);
     }
 

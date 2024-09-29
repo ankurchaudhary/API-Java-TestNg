@@ -1,2 +1,2 @@
 
-# To run all test cases use mvn test command
+# To run all tests use mvn test command
