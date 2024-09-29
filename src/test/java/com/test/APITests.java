@@ -73,6 +73,7 @@ public class APITests {
         request.setJob("leader");
 
         Response response = RestAssured.given()
+                .relaxedHTTPSValidation()
                 .header("Content-Type",
                         "application/json")
                 .baseUri(ConfigReader.get("baseUrl"))
@@ -83,6 +84,7 @@ public class APITests {
     @Test
     public void testBadRequest400(){
         Response response = RestAssured.given()
+                .relaxedHTTPSValidation()
                 .header("Content-Type",
                         "application/json")
                 .baseUri(ConfigReader.get("postUrl"))
@@ -96,6 +98,7 @@ public class APITests {
 
         String badUrl = "https://reqres.in/ai/users";
         Response response = RestAssured.given()
+                .relaxedHTTPSValidation()
                 .header("Content-Type",
                         "application/json")
                 .baseUri(badUrl).get();
@@ -105,7 +108,8 @@ public class APITests {
 
     public Response getCall(){
         return RestAssured
-                .given().baseUri(ConfigReader.get("baseUrl"))
+                .given().relaxedHTTPSValidation().
+                baseUri(ConfigReader.get("baseUrl"))
                 .queryParam("page",1).get();
     }
 
