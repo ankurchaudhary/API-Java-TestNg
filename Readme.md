@@ -1,2 +1,3 @@
+To build image and run all tests use:
 
-# To run all tests use mvn test command
+mvn clean package -DskipTests; docker build -t docker/automation:latest .; docker compose up
