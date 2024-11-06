@@ -28,7 +28,7 @@ public class APITests {
         Assert.assertEquals(status,200);
     }
 
-    @Test
+    @Test(priority = 1, groups = {"Regression"})
     public void testGetCall() throws IOException {
         SoftAssert softAssert = new SoftAssert();
 
